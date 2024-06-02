@@ -13,13 +13,15 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {NavLink } from "react-router-dom";
-
+import style from './SignIn.module.css'
+import { register } from '../../redux/auth/operations';
+import { useDispatch } from 'react-redux';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://github.com/DanielaBadea/goit-react-hw-08-phonebook-user.git">
+        GitHub Daniela Badea
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -32,14 +34,24 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+const dispatch = useDispatch();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    console.log("Form values:", {
+      email: form.elements.email.value,
+      password: form.elements.password.value,
     });
+    dispatch(
+      register({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+    form.reset();
   };
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -53,8 +65,8 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} >
+            <LockOutlinedIcon/>
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
@@ -89,17 +101,18 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              className={style.btn}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item xs>
-                <NavLink to="/password" variant="body2">
+                <NavLink to="/password" variant="body2" className={style.link}>
                   Forgot password?
                 </NavLink>
               </Grid>
               <Grid item>
-                <NavLink to='/register' variant="body2">
+                <NavLink to='/register' variant="body2" className={style.link}>
                   {"Don't have an account? Sign Up"}
                 </NavLink>
               </Grid>

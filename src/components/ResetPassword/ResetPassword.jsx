@@ -9,6 +9,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {NavLink } from "react-router-dom";
+import style from './ResetPassword.module.css'
 // import Copyright from '../components/Copyright';
 
 const theme = createTheme();
@@ -55,12 +56,13 @@ export default function ResetPassword() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              className={style.btn}
             >
               Reset Password
             </Button>
             <Grid container>
               <Grid item xs>
-                <NavLink to="/login" variant="body2" >
+                <NavLink to="/login" variant="body2" className={style.link} >
                   {"Remember your password? Sign in"}
                 </NavLink>
               </Grid>
