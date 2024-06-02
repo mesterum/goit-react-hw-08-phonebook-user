@@ -35,6 +35,7 @@
     height: 10%;
     display: flex;
     flex-direction: row;
+    padding-bottom: 30px;
 }
 /* .iconNav{
     margin-right: 5px;

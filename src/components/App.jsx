@@ -7,7 +7,6 @@ import { refreshUser } from '../redux/auth/operations';
 import { useAuth } from '../hooks/useAuth';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
-
 // Lazy-loaded components
 const Home = lazy(() => import('../pages/Home/Home'));
 const Register = lazy(() => import('pages/Register/Register'));
