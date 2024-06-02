@@ -1,7 +1,11 @@
 .sectionBook {
   width: 100vw;
-  max-width: 350px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   gap: 30px;
+  margin: 50px auto;
+}
+.wrapperSection{
+  padding: 40px;
 }

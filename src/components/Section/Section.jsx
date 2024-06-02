@@ -4,8 +4,11 @@ import PropTypes from 'prop-types';
 function Section ({title, children}) {
     return( 
     <section className={styles.sectionBook}>
+        <div className={styles.wrapperSection}>
         <h2 className={styles.titleBook}>{title}</h2>
         {children}
+        </div>
+        
         </section>
     )
 }
