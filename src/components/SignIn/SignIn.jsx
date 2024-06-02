@@ -14,7 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {NavLink } from "react-router-dom";
 import style from './SignIn.module.css'
-import { register } from '../../redux/auth/operations';
+import { logIn } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 function Copyright(props) {
   return (
@@ -44,7 +44,7 @@ const dispatch = useDispatch();
       password: form.elements.password.value,
     });
     dispatch(
-      register({
+      logIn({
         email: form.elements.email.value,
         password: form.elements.password.value,
       })
