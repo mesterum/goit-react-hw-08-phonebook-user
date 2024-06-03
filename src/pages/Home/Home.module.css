@@ -4,14 +4,25 @@
   }
   .section > h1{
     text-align: center;
+    font-size: 20px;
   }
+  .titleHome{
+    font-size: 16px;
+  }
+.listItems{
+    padding: 20px;
+}
+.items{
+    display: flex;
+    flex-direction: column;
+} 
   .listItems .items .paragraph:first-child{
     color: #ff8400;
     font-weight: 600;
   }
   .items{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 5px;
     margin-bottom: 5px;
   }
@@ -19,6 +30,7 @@
     margin: 0;
    text-align: justify;
    line-height: 1.5;
+   font-size: 12px;
   }
 .wrapperUser{
     margin-left: 30px;
@@ -42,7 +54,7 @@ a{
 }
 .prghAnim {
     text-align: center;
-    font-size: 18px;
+    font-size: 12px;
     margin-top: 50px;
     font-weight: 500;
     animation: scaleText 2s infinite;
@@ -50,15 +62,48 @@ a{
 
 @keyframes scaleText {
     0% {
-        font-size: 18px;
+        font-size: 12px;
     }
     50% {
-        font-size: 20px; 
+        font-size: 16px; 
     }
     100% {
-        font-size: 18px;
+        font-size: 12px;
     }
 }
 .iconHello{
     color: #186f5e9c;
+}
+@media (min-width:768px){
+    .section > h1{
+        font-size: 30px;
+      }
+    .titleHome{
+        font-size: 24px;
+    }
+    .paragraph{
+        font-size: 18px;
+    }
+    .items{
+        flex-direction: row;
+    } 
+    .prghAnim {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 50px;
+        font-weight: 500;
+        animation: scaleText 2s infinite;
+    }
+    
+    @keyframes scaleText {
+        0% {
+            font-size: 18px;
+        }
+        50% {
+            font-size: 20px; 
+        }
+        100% {
+            font-size: 18px;
+        }
+    }
 }

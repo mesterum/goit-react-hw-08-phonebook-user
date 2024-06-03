@@ -37,21 +37,55 @@ const defaultTheme = createTheme();
 export default function SignUp() {
   const dispatch =useDispatch();
 
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   const form = e.currentTarget;
+  //   console.log("Form values:", {
+  //     name:form.elements.name.value,
+  //     email: form.elements.email.value,
+  //     password: form.elements.password.value,
+  //   });
+  //   dispatch(
+  //     register({
+  //       name: form.elements.name.value,
+  //       email: form.elements.email.value,
+  //       password: form.elements.password.value,
+  //     })
+  //   );
+  //   form.reset();
+  // };
+  const [errorMessage, setErrorMessage] = React.useState('');
+ 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
-    console.log("Form values:", {
-      name:form.elements.name.value,
-      email: form.elements.email.value,
-      password: form.elements.password.value,
-    });
-    dispatch(
-      register({
-        name: form.elements.name.value,
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    );
+    const name = form.elements.name.value;
+    const email = form.elements.email.value;
+    const password = form.elements.password.value;
+
+    if (!name || !email || !password) {
+      setErrorMessage('All fields are required.');
+      return;
+    }
+
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const isValidPassword = password.length >= 6;
+
+    if (!isValidEmail) {
+      setErrorMessage('The email is not valid.');
+      return;
+    }
+
+    if (!isValidPassword) {
+      setErrorMessage('Password must be at least 6 characters long.');
+      return;
+    }
+
+    setErrorMessage('');
+
+    console.log("Form values:", { name, email, password });
+    
+    dispatch(register({ name, email, password }));
     form.reset();
   };
 
@@ -109,6 +143,7 @@ export default function SignUp() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <Button
               type="submit"
               fullWidth

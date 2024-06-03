@@ -1,6 +1,13 @@
 .mainApp{
     display: flex;
+    flex-direction: column;
     height: 100vh;
+}
+@media (min-width: 768px) {
+    .mainApp {
+        flex-direction: row;
+    }
+
 }
 .content{
     flex: 1;

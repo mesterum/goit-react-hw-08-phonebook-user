@@ -1,5 +1,6 @@
 .link{
     font-weight: 600;
+    font-size:12px;
 }
 .link:hover, .link:active, .link:focus, .link:visited{
     color: #ff8400

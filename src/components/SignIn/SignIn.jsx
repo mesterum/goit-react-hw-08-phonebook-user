@@ -16,6 +16,7 @@ import {NavLink } from "react-router-dom";
 import style from './SignIn.module.css'
 import { logIn } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
+import { useAuth } from 'hooks';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -35,23 +36,44 @@ const defaultTheme = createTheme();
 
 export default function SignIn() {
 const dispatch = useDispatch();
+const {user} = useAuth();
+const [errorMessage, setErrorMessage] = React.useState("")
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    console.log("Form values:", {
-      email: form.elements.email.value,
-      password: form.elements.password.value,
-    });
-    dispatch(
-      logIn({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    );
-    form.reset();
-  };
+const handleSubmit = e => {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const email = form.elements.email.value;
+  const password = form.elements.password.value;
 
+  if (email === '' || password === '') {
+    console.log("Email-ul sau parola sunt goale.");
+    setErrorMessage("Email and password cannot be empty.")
+    return;
+  }
+  const isValidEmail = email === user.email;
+  const isValidPassword = password === user.password;
+
+  if (!isValidEmail || !isValidPassword) {
+    console.log("Email-ul sau parola sunt incorecte.");
+    // alert("Email-ul sau parola sunt incorecte.");
+    setErrorMessage("The email or password is incorrect.")
+    return;
+  }
+
+  console.log("Form values:", {
+    email: email,
+    password: password,
+  });
+
+  dispatch(
+    logIn({
+      email: email,
+      password: password,
+    })
+  );
+
+  form.reset();
+};
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -96,6 +118,7 @@ const dispatch = useDispatch();
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <Button
               type="submit"
               fullWidth
