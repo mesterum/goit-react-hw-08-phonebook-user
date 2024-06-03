@@ -53,6 +53,10 @@
     .burgerMenuButton {
         display: none;
     }
+    .listNav{
+        padding: 30px;
+        width: 80%;
+    }
 }
 
 .contentLink {
