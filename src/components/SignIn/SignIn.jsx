@@ -50,7 +50,7 @@ const handleSubmit = e => {
     setErrorMessage("Email and password cannot be empty.")
     return;
   }
-  const isValidEmail = email === user.email;
+  /* const isValidEmail = email === user.email;
   const isValidPassword = password === user.password;
 
   if (!isValidEmail || !isValidPassword) {
@@ -63,7 +63,7 @@ const handleSubmit = e => {
   console.log("Form values:", {
     email: email,
     password: password,
-  });
+  }); */
 
   dispatch(
     logIn({
